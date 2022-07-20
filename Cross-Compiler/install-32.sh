@@ -10,12 +10,6 @@ archives=(
   "binutils-2.36.1.tar.xz"
 )
 
-if [ -d "./gcc-10.2.0" ] && [ -d "./binutils-2.36.1" ]; then
-  skip_extraction=1
-else
-  skip_extraction=0
-fi
-
 for url in "${urls[@]}"; do
   if [ ! -f "$archive" ]; then
     curl -O "$url"
@@ -23,9 +17,7 @@ for url in "${urls[@]}"; do
 done
 
 for archive in "${archives[@]}"; do
-  if [ ! $skip_extraction ]; then
-    tar -xvf "$archive"
-  fi
+  tar -xvf "$archive"
 done
 
 export PREFIX="$HOME/opt/cross"
