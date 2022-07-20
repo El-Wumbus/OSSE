@@ -6,7 +6,7 @@
 
 ```bash
   cd OSSE/Cross-Compliler
-  bash ./install.sh
+  bash ./install-32.sh
   # wait to download, compile, and install to $HOME/opt/cross/bin
   # $HOME/opt/cross/bin will be added to $PATH if not already present
 ```
