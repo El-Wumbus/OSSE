@@ -1,7 +1,4 @@
-#include "strlib/strlen.hpp"
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdint.h>
+#include "kernel.hpp"
 
 using namespace unstd;
 
@@ -13,7 +10,6 @@ using namespace unstd;
 #if !defined(__i386__)
 #error "This kernel needs to be compiled with a ix86-elf compiler."
 #endif
-
 
 /* Hardware text mode color constants. */
 enum vga_color {
@@ -51,10 +47,10 @@ size_t terminal_column;
 uint8_t terminal_color;
 uint16_t *terminal_buffer;
 
-void terminal_initialize(void) {
+void terminal_initialize(enum vga_color fg, enum vga_color bg) {
   terminal_row = 0;
   terminal_column = 0;
-  terminal_color = vga_entry_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLACK);
+  terminal_color = vga_entry_color(fg, bg);
   terminal_buffer = (uint16_t *)0xB8000;
   for (size_t y = 0; y < VGA_HEIGHT; y++) {
     for (size_t x = 0; x < VGA_WIDTH; x++) {
@@ -97,8 +93,9 @@ void terminal_writestring(const char *data) {
 
 extern "C" void kernel_main(void) {
   /* Initialize terminal interface */
-  terminal_initialize();
+  terminal_initialize(VGA_COLOR_BLUE, VGA_COLOR_BLACK);
 
   /* Newline support is left as an exercise. */
-  terminal_writestring("Cool, This Works(DECATOR)\n\n\nhello world!\n");
+  terminal_writestring("ooooo ooooo ooooo\n 888   888   888\n 888ooo888   "
+                       "888\n 888   888   888\no888o o888o o888o\n");
 }
