@@ -3,6 +3,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+using namespace unstd;
+
 /* Check if the compiler thinks you are targeting the wrong operating system. */
 #if defined(__linux__)
 #error "Cannot target Linux! (Use a cross-compiler)."
@@ -11,6 +13,7 @@
 #if !defined(__i386__)
 #error "This kernel needs to be compiled with a ix86-elf compiler."
 #endif
+
 
 /* Hardware text mode color constants. */
 enum vga_color {
