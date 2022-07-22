@@ -2,3 +2,4 @@ gcc-*
 binutils-*
 dist
 *.iso
+.vscode

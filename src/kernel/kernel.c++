@@ -116,6 +116,5 @@ extern "C" void kernel_main(void) {
   terminal_initialize(VGA_COLOR_BLUE, VGA_COLOR_BLACK);
 
   /* Newline support is left as an exercise. */
-  terminal_writestring("ooooo ooooo ooooo\n 888   888   888\n 888ooo888   "
-                       "888\n 888   888   888\no888o o888o o888o\n");
+  terminal_writestring(itoa(0xB8000, 0x10));
 }
