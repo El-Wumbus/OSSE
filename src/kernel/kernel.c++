@@ -88,6 +88,7 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y) {
 }
 
 void terminal_putchar(char c) {
+  /* Support new line char */
   if ((c == '\n') || (terminal_column == VGA_WIDTH)) {
     terminal_column = 0x0;
     if (++terminal_row == VGA_HEIGHT)
@@ -115,6 +116,5 @@ extern "C" void kernel_main(void) {
   /* Initialize terminal interface */
   terminal_initialize(VGA_COLOR_BLUE, VGA_COLOR_BLACK);
 
-  /* Newline support is left as an exercise. */
   terminal_writestring(itoa(0xB8000, 0x10));
 }
